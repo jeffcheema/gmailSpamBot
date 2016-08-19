@@ -11,7 +11,7 @@ from oauth2client.tools import run
 
 
 # Path to the client_secret.json file downloaded from the Developer Console
-CLIENT_SECRET_FILE = 'USE YOUR JSON FILE FROM DEVELOPER CONSOLE'
+CLIENT_SECRET_FILE = 'client_secret.json'
 
 # Check https://developers.google.com/gmail/api/auth/scopes for all available scopes
 OAUTH_SCOPE = 'https://www.googleapis.com/auth/gmail.compose'
@@ -43,12 +43,12 @@ for _ in " "*number:
 	message = MIMEText(text)
 	message['to'] = emailtosend
 	message['from'] = "you@go.here"
-	message['subject'] = subject + "       " + #''.join([random.choice(string.ascii_letters + string.digits) for n in xrange(3)])
+	message['subject'] = subject + "       " + 
 	body = {'raw': base64.b64encode(message.as_string())}
 	try:
 		message = (gmail_service.users().messages().send(userId="me", body=body).execute())
 		print('Message Id: %s' % message['id'])
 		print(message)
-		print ">>>(((({{{MESSAGE SENT}}))))<<<"
+		print "Message has been sent!"
 	except Exception as error:
 		print('An error occurred: %s' % error)
